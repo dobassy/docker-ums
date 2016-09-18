@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  ums:
+    image: exlair/ums:6.5.0
+    container_name: ums
+    network_mode: host
+    environment:
+      - X_UMS_NETWORK_INTERFACES=ens33
+      - X_UMS_ENGINES=ffmpegvideo,ffmpegaudio,ffmpegwebvideo,vlcwebvideo,vlcvideo,vlcaudio,ffmpegdvrmsremux
+    ports:
+      - "5001:5001"
+      - "9001:9001"
+    volumes:
+      - /path/to/your/mediavolume:/media
+    restart: always

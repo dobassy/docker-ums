@@ -1,0 +1,619 @@
+# ----------------------------------------------------------------------------
+# General Configuration Tab
+# ----------------------------------------------------------------------------
+# ---< General Settings >-----------------------------------------------------
+
+# Default: "Universal Media Server"
+server_name =
+
+# Default: false
+append_profile_name =
+
+# Default: "", which means UMS will follow the locale.
+language =
+
+# Default: false
+minimized =
+
+# Default: false.
+auto_update =
+
+# Default: false.
+hide_advanced_options =
+
+# Default: true until it has run once
+run_wizard =
+
+# Default: true
+single_instance =
+
+# ---< Network Settings >-----------------------------------------------------
+# E.g. network_interface = eth0
+# Default: "", which means UMS will automatically select a network interface.
+network_interface = {{ var "X_UMS_NETWORK_INTERFACES" | default "eth0" }}
+
+# Default: "", which means UMS will automatically select an IP address.
+hostname =
+
+# Default: "", which means UMS will automatically use port 5001.
+port =
+
+# Default: ""
+ip_filter =
+
+# Default: 90
+maximum_bitrate =
+
+# Default: false
+automatic_maximum_bitrate =
+
+# Default: 0 (automatic)
+ALIVE_delay =
+
+# ---< Advanced HTTP and system settings >------------------------------------
+# Default: true
+http_engine_v2 =
+
+# Default: true
+prevents_sleep_mode =
+
+# Default: "All renderers"
+selected_renderers =
+
+# Default: "", which means UMS will assume the "Unknown renderer".
+renderer_default =
+
+# Default: false
+renderer_force_default =
+
+# Default: true
+chromecast_extension =
+
+# Default: true
+external_network =
+
+# ----------------------------------------------------------------------------
+# Navigation/Share Settings Tab
+# ----------------------------------------------------------------------------
+# ---< Thumbnails >-----------------------------------------------------------
+# Default: true
+generate_thumbnails =
+
+# Default: "4"
+thumbnail_seek_position =
+
+# Default: true
+image_thumbnails =
+
+# Default: false, which will use the built-in method.
+use_mplayer_for_video_thumbs =
+
+# Default: false
+dvd_isos_thumbnails =
+
+#    0: Alphabetical (A-Z) - search local filesystem
+#    1: Download from Cover Art Archive
+# Default: 1
+audio_thumbnails_method =
+
+# Default: ""
+alternate_thumb_folder =
+
+# ---< File sorting / naming >------------------------------------------------
+#    0: Alphabetical A-Z
+#    1: By date (newest first)
+#    2: By reverse date (oldest first)
+#    3: ASCIIbetical (i.e. using ASCII code values)
+#    4: Alphanumeric (AKA natural sort e.g. "Season 2" before "Season 10")
+#    5: Random
+#    6: No Sorting
+# Default: 4
+sort_method =
+
+# Default: true
+ignore_the_word_the =
+
+# Default: false
+prettify_filenames =
+
+# Default: true if filename prettifying is enabled
+use_imdb_info =
+
+# ---< Virtual folders >------------------------------------------------------
+# Default: true
+hide_extensions =
+
+# Default: true
+hide_enginenames =
+
+# Default: false
+hide_empty_folders =
+
+# Default: false
+show_itunes_library =
+
+# Default: false
+show_iphoto_library =
+
+# Default: false
+show_aperture_library =
+
+# Default: true
+use_cache =
+
+# Default: true
+hide_media_library_folder =
+
+# Default: false
+enable_archive_browsing =
+
+# Default: false
+hide_video_settings =
+
+# Default: false
+hide_transcode_folder =
+
+# Default: true
+hide_live_subtitles_folder =
+
+# Default: 10000
+atz_limit =
+
+# Default: false
+hide_new_media_folder =
+
+#   0 = Do nothing
+#   1 = Mark media (Add a thumbnail overlay or prefix the media name)
+#   2 = Hide video
+#   3 = Move file to a different folder
+#   4 = Move file to recycle/trash bin. It will not do anything if this isn't
+#       possible
+#
+# Default: 1
+fully_played_action =
+
+# Default: ""
+fully_played_output_directory =
+
+# Default: 30000 (30 seconds)
+minimum_watched_play_time =
+
+# Default: true
+resume =
+
+# Default: false
+hide_recently_played_folder =
+
+# ---< Shared folders >-------------------------------------------------------
+# Default: ""
+folders = {{ var "X_UMS_FOLDERS" | default "/media" }}
+
+# Default: ""
+folders_monitored =
+
+# ----------------------------------------------------------------------------
+# Transcoding Settings Tab
+# ----------------------------------------------------------------------------
+
+# Default: "ffmpegvideo,mencoder,tsmuxer,ffmpegaudio,tsmuxeraudio,ffmpegwebvideo,vlcwebvideo,vlcvideo,mencoderwebvideo,vlcaudio,ffmpegdvrmsremux,rawthumbs"
+engines = {{ var "X_UMS_ENGINES" | default "ffmpegvideo,mencoder,tsmuxer,ffmpegaudio,tsmuxeraudio,ffmpegwebvideo,vlcwebvideo,vlcvideo,mencoderwebvideo,vlcaudio,ffmpegdvrmsremux,rawthumbs" }}
+
+# ----------------------------------------------------------------------------
+# Transcoding Settings Tab: Common Transcode Settings Page
+# ----------------------------------------------------------------------------
+
+# ---< General settings >-----------------------------------------------------
+# Default: 200
+maximum_video_buffer_size =
+
+# Default: "", which will use automatic-detection.
+number_of_cpu_cores =
+
+# Default: false
+chapter_support =
+
+# Default: 5
+chapter_interval =
+
+# Default: false
+disable_subtitles =
+
+# ---< Video Settings Tab >---------------------------------------------------
+# Default: false
+gpu_acceleration =
+
+# Default: true
+mencoder_remux_mpeg2 =
+
+# ---< Misc settings >--------------------------------------------------------
+# Default: "Automatic (Wired)"
+mpeg2_main_settings =
+
+# Default: "Automatic (Wired)"
+x264_constant_rate_factor =
+
+# Default: ""
+disable_transcode_for_extensions =
+
+# Default: ""
+force_transcode_for_extensions =
+ 
+
+# ----------------------------------------------------------------------------
+# Transcoding Settings Tab: FFmpeg Page
+# ----------------------------------------------------------------------------
+# ---< General settings >-----------------------------------------------------
+
+# Default: "", which will use automatic-detection.
+ffmpeg_multithreading =
+
+# Default: false
+ffmpeg_mux_tsmuxer_compatible =
+
+# Default: false
+ffmpeg_fontconfig =
+
+# Default: true
+ffmpeg_mencoder_problematic_subtitles =
+
+# ---< Binary tools paths >---------------------------------------------------
+# Path to mencoder (absolute or relative from project.binaries.dir)
+# Default:
+#     Win: win32/mencoder.exe
+#     Mac: osx/mencoder
+#     Linux: mencoder + system PATH
+mencoder_path =
+
+# Path to ffmpeg (absolute or relative from project.binaries.dir)
+# Default:
+#     Win: win32/ffmpeg.exe
+#     Mac: osx/ffmpeg
+#     Linux: ffmpeg + system PATH
+ffmpeg_path =
+
+# Path to mplayer (absolute or relative from project.binaries.dir)
+# Default:
+#     Win: win32/mplayer.exe
+#     Mac: osx/mplayer
+#     Linux: mplayer + system PATH
+mplayer_path =
+
+# Path to tsMuxeR (absolute or relative from project.binaries.dir)
+# Default:
+#     Win: win32/tsMuxeR.exe
+#     Mac: osx/tsMuxeR
+#     Linux: tsMuxeR + system PATH
+tsmuxer_path =
+
+# Path to tsMuxeR-new (absolute or relative from project.binaries.dir)
+# This version of tsMuxeR is used on PS3.
+# Default:
+#     Win: win32/tsMuxeR-new.exe
+#     Mac: osx/tsMuxeR-new
+#     Linux: tsMuxeR-new + system PATH
+tsmuxer_new_path =
+
+# Path to dcraw (absolute or relative from project.binaries.dir)
+# Default:
+#     Win: win32/dcrawMS.exe
+#     Mac: osx/dcraw
+#     Linux: dcraw + system PATH
+dcraw_path =
+
+# Path to FLAC (absolute or relative from project.binaries.dir)
+# Default:
+#     Win: win32/flac.exe
+#     Mac: osx/flac
+#     Linux: flac + system PATH
+flac_path =
+
+# Path to VideoLAN (absolute or relative from project.binaries.dir)
+# Default:
+#     Win: videolan/vlc.exe
+#     Mac: /Applications/VLC.app/Contents/MacOS/VLC
+#     Linux: vlc + system PATH
+vlc_path =
+
+############################################
+## Buffer settings
+############################################
+
+# Default: true
+transcode_keep_first_connection =
+
+# Default: false
+transcode_block_multiple_connections =
+
+# Default: 100
+maximum_audio_buffer_size =
+
+# Default: 1
+minimum_web_buffer_size =
+
+# ---< Virtual folders >------------------------------------------------------
+
+# Virtual folders allow you to combine real folders into virtual ones
+# and give them custom names.
+# Example: VFolderName1|Folder1Path,Folder2Path;VFolderName2|Folder1Path
+# Note: Backslashes must be doubled. For example, if you have a folder named
+# SubFolder inside ParentFolder, write it like ParentFolder\\SubFolder
+# Default: ""
+virtual_folders =
+
+# The location of your virtual folders config file, which contains a
+# json-formatted list of virtual folders.
+# The file will be loaded from your profile directory.
+# See VirtualFolders.conf in your profile directory for an example of syntax.
+# JSON-validators can be useful for making sure the code of your file is
+# valid, an example of which is jsonlint.com.
+# When this file is used, the string above (virtual_folders) will be ignored.
+# Example: VirtualFolders.conf
+# Default: ""
+virtual_folders_file =
+
+
+# Default: ""
+itunes_library_path =
+
+# Ignored folders
+# ---------------
+# A comma-separated list of folders to ignore.
+# Example: C:\\IgnoredFolder1,C:\\IgnoredFolder2
+# Default: ""
+folders_ignored =
+
+# Default: ""
+ping_path =
+
+# Default: true
+upnp_enable =
+
+###########################################
+## Web settings
+###########################################
+
+# Default: 9001
+web_port =
+
+# Default: true
+web_enable =
+
+# Default: web
+web_path =
+
+# Default: true
+web_authenticate =
+
+# Default: 720 and 404
+web_width =
+web_height =
+
+# Default: use web_height and web_width defaults
+web_size =
+
+# Default: true for audio, false for others
+web_continue_audio =
+web_continue_image =
+web_continue_video =
+
+# Default: true for audio, false for others
+web_loop_audio =
+web_loop_image =
+web_loop_video =
+
+# Default: 0 meaning you have to manually go to the next image.
+web_image_show_delay =
+
+# Default: 30
+web_threads =
+
+# Deafult: false
+web_flash =
+
+# Default: false
+web_subtitles_transcoded =
+
+web_chrome_mkv_as_webm_spoof =
+web_firefox_linux_mp4 =
+
+# Normalize audio volume with MEncoder
+# ------------------------------------
+# Makes quiet things relatively louder so they are easier to distinguish.
+# Note: This is currently broken in MEncoder so do not use except for testing.
+# Default: false
+mencoder_normalize_volume =
+
+# Profile name
+# ------------
+# An optional identifier used to distinguish this profile (i.e. collection of
+# settings) from other profiles. The profile name is displayed in the renderer
+# in square brackets after the software name e.g.
+#
+#    Universal Media Server [myprofile]
+#
+# See the FAQ for details on how to create and use multiple profiles:
+# http://www.universalmediaserver.com/faq/#Setup2
+# Default: the server's hostname.
+name =
+
+# Skip network interfaces
+# -----------------------
+# Specifies a comma separated list of network interfaces to ignore when
+# scanning for a suitable network interface to attach to. This is typically
+# used to ignore virtual interfaces created by other applications.
+# Default: "tap,vmnet,vnic", which ignores interfaces named "tap0", "tap1" and
+# "tap2", but it allows an interface named "eth0".
+skip_network_interfaces = {{ var "X_UMS_SKIP_NETWORK_INTERFACES" | default "tap,vmnet,vnic" }}
+
+# Default is $PROFILE_DIRECTORY/WEB.conf
+web_conf =
+
+# Default: "plugins"
+plugins =
+
+# Default: The localized version of "#--TRANSCODE--#".
+transcode_folder_name =
+
+############################################
+## Resume function settings (non GUI)
+############################################
+
+# Resume back
+# -----------
+# Percentage of a file that has to be played to count as "completed".
+# This value is a number between 10 and 97.
+# When this threshold is reached the resume file is deleted.
+# Default: 92
+resume_back =
+
+# Resume rewind
+# -------------
+# Since timers of stop/start are not 100% correct UMS will "rewind" the stop
+# time a little bit to make sure you don't miss anything.
+# This will be a time value in milliseconds.
+# Default: 17000
+resume_rewind =
+
+# Resume keep time
+# ----------------
+# Represents the number of days you want to keep your resume file.
+# Default: 0
+resume_keep_time =
+
+############################################
+# Live subtitles settings (Non GUI)
+############################################
+
+# Live subtitles keep
+# -------------------
+# Lets you choose to keep live subtitles or not.
+# Default: false
+live_subtitles_keep =
+
+# Live subtitles limit
+# --------------------
+# Maximum number of subtitles that could be downloaded from opensubtitles.org
+# Default: 20
+live_subtitles_limit =
+
+# Live subtitles timeout
+# ----------------------
+# Number of days that live subtitles need to be keep.
+# Default: 0 (meaning keep indefinitely)
+live_subtitles_timeout =
+
+############################################
+## Logging settings
+############################################
+
+# Log Level
+# ---------------------
+# The root logging level, a root filter applied to all logging, which can be:
+# ALL, TRACE, DEBUG, INFO, WARN, ERROR or OFF
+# This property can also be set from the 'Logs' tab in the gui.
+# Default: "DEBUG"
+log_level = 
+
+# Logfile name
+# ---------------------
+# The name of the standard log file. This is just the file name, 
+# no path information must be given here. The location of the log
+# file is decided by rules that varies by platform and some other
+# factors.
+# Default: "debug.log"
+logging_logfile_name =
+
+# Logging Buffered
+# ---------------------
+# By default the log file(s) are flushed/written to disk after each new log 
+# event. SSD drives can be written to a fixed number of times only, and logging
+# can be a great source of wear on such drives. Buffered logging makes UMS 
+# buffer up to 8 kb between each write, significantly reducing the number of 
+# writes. Buffered writes can also help performance if you write to regular a 
+# HDD with a high workload. Operating systems and drives often has their own
+# buffering, so enabling buffered logging might not make any real difference.
+# Please be aware that if UMS crashes or is terminated, the buffer might not 
+# get flushed/written. If you're debugging a specific problem concerning 
+# crashing or hanging, buffering should probably be turned off.
+# Please note: If UMS is started in "forced" TRACE mode, buffering will
+# be disabled regardless of this setting.
+# Default: false
+logging_buffered =
+
+# Logging Filter Console
+# ---------------------
+# A separate filter for the console that filters after the root filter have
+# done it's filtering. It's not possible to get back things filtered out by
+# Log Level above, but you can further filter out more before it's written to
+# the console. Valid values are:
+# ALL, TRACE, DEBUG, INFO, WARN, ERROR or OFF
+# Default: "INFO"
+logging_filter_console =
+
+# Logging Filter Log Tab
+# ---------------------
+# A separate filter for the log window in the "Logs" tab in the GUI that
+# filters after the root filter have done it's filtering. It's not possible to
+# get back things filtered out by Log Level above, but you can further filter
+# out more before it's written to the log window. Valid values are:
+# ALL, TRACE, DEBUG, INFO, WARN, ERROR or OFF
+# Default: "INFO"
+logging_filter_logs_tab =
+
+# Logging Logs Tab Linebuffer
+# ---------------------
+# Specifies how many lines the log windows on the "Logs" tab in the GUI will
+# store before deleting the oldest entries. This will decide the length of the
+# scrollable area.
+# Default: 1000
+logging_logs_tab_linebuffer = 
+
+#---< Syslog settings >----------------
+#
+# Please note: It is possible to customize UMS logging via LogBack 
+# configuration files (logback.xml or logback.headless.xml). You can place 
+# customized versions of these files in your profile folder, which will
+# override the default LogBack files. The syslog settings presented here
+# should NOT be used in conjunction with customized LogBack configuration
+# files, but are meant to give access to syslog logging for those that don't
+# want to acquire in-depth knowledge about LogBack configuration. 
+
+# Logging Use Syslog
+# ---------------------
+# Activates syslog logging and disables file logging. That enables you to 
+# send all logging to a differnt computer running a syslog server completely
+# removing all local disk I/O from logging, or to collect logs in a centralized
+# way. Syslog Host must be specified if this is enabled.
+# Please note: If UMS is started in "forced" TRACE mode, file logging will
+# be enabled and syslog disabled regardless of this setting.
+# Default: false
+logging_use_syslog = 
+
+# Logging Syslog Host
+# ---------------------
+# Host name or IP address for the syslog server. Use "localhost" for logging 
+# to a syslog server on the same computer. The name must be resolvable (via
+# DNS, WINS, HOSTS etc.) or be an IP address for syslog logging to be activated.
+# Default: ""
+logging_syslog_host =
+
+# Logging Syslog Port
+# ---------------------
+# UDP port to use for syslog logging. This should normally be left at the 
+# default value.
+# Default: 514
+logging_syslog_port =
+
+# Logging Syslog Facility
+# Syslog facility can be specified for filtering purposes, but is limited to
+# one of the following values: AUTH, AUTHPRIV, DAEMON, CRON, FTP, LPR, KERN,
+# MAIL, NEWS, SYSLOG, USER, UUCP, LOCAL1, LOCAL2, LOCAL3, LOCAL4, LOCAL5,
+# LOCAL6 or LOCAL7. Invalid values will be replaced with the default.
+# Default: "USER"
+logging_syslog_facility =
+
+# ---< Other settings saved by UMS >------------------------------------------
+alternativeffmpegpath = 
+gui_log_search_case_sensitive = 
+gui_log_search_use_regex = 
+gui_log_search_multiline = 
