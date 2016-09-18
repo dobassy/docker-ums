@@ -27,14 +27,14 @@ Quick Start
 Example usage:
 
 	$ docker run -d --net=host --restart=always \
-	  -p 5001:5001 -p 9001:9001
+	  -p 5001:5001 -p 9001:9001 \
 	  -v /path/to/your/mediavolume:/media \
 	  --name ums exlair/ums:6.5.0
 
-or if eth0 is not the default network:
+or if `eth0` is not the default network:
 
 	$ docker run -d --net=host --restart=always \
-	  -p 5001:5001 -p 9001:9001
+	  -p 5001:5001 -p 9001:9001 \
 	  -v /path/to/your/mediavolume:/media \
 	  -e X_UMS_NETWORK_INTERFACES=ens33
 	  --name ums exlair/ums:6.5.0
@@ -46,8 +46,8 @@ You can also start using the `docker-compose` command. Please refer to the `dock
 Restriction
 --------------
 - DockerHubレポジトリへの登録を行っていないためビルドが必要です。
-- PlayStation 3 or 4 で動画視聴をする目的しかありませんので、音楽再生などその他用途のためには設定が不足している可能性が高いです。動作確認をしておりません
-- 伴って、同梱の `UMS.conf` ではいくつかの項目を削除しています。削除してもデフォルト設定で動作しますので実害はありませんが、必要に応じて conf を上書きしてください。
+- PlayStation 3 or 4 で動画視聴をする目的しかありませんので、音楽再生などその他用途のためには設定が不足している可能性が高いです。最低限の用途でしか動作確認をしておりません。
+- 伴って、同梱の `UMS.conf` ではいくつかの項目を削除しています。削除してもデフォルト設定で動作しますので実害は生じませんが、必要に応じて conf を上書きしてください。
 
 
 Configuration
@@ -56,10 +56,12 @@ Configuration
 
 その場合、ホストマシンの任意のディレクトリに `UMS.conf` と `WEB.conf` の2ファイルを用意し、ボリュームをマウントしてください。
 
-~~
-docker run -d -v /path/to/yourhost/conf:/srv/ums/conf \
-  --name ums exlair/ums:6.5.0
-~~
+
+	docker run -d \
+	  -v /path/to/your/mediavolume:/media \
+	  -v /path/to/yourhost/conf:/srv/ums/conf \  # <--this line
+	  --name ums exlair/ums:6.5.0
+
 
 ### Available Configuration Parameters
 設定ファイルのうち、いくつかの値は環境変数により設定可能です（以下リスト）。これで足りる場合は、設定ファイルをマウントするよりも手軽に利用することができます。
@@ -68,7 +70,7 @@ Below is the list of parameters that can be set using environment variables.
 
 * **X_UMS_FOLDERS**: default "`/media`"
 * **X_UMS_NETWORK_INTERFACES**: default "`eth0`"
-* **X_UMS_SKIP_NETWORK_INTERFACES**: "`tap,vmnet,vnic`"
+* **X_UMS_SKIP_NETWORK_INTERFACES**: default "`tap,vmnet,vnic`"
 * **X_UMS_ENGINES**: default "`ffmpegvideo,mencoder,tsmuxer,ffmpegaudio,tsmuxeraudio,ffmpegwebvideo,vlcwebvideo,vlcvideo,mencoderwebvideo,vlcaudio,ffmpegdvrmsremux,rawthumbs`"
 
 
@@ -81,18 +83,16 @@ Specification
 
 Directory Structure:
 
-~~
--rwxr-xr-x    ums      ums   UMS.sh
-lrwxrwxrwx    ums      ums   UMS.conf -> conf/UMS.conf
-lrwxrwxrwx    ums      ums   WEB.conf -> conf/WEB.conf
-drwxr-xr-x    ums      ums   conf
-
-~ $ ls -al ./conf/
-drwxr-xr-x    ums      ums    .
-drwxr-sr-x    ums      ums    ..
--rw-r--r--    ums      ums    UMS.conf
--rw-r--r--    ums      ums    WEB.conf
-~~
+	-rwxr-xr-x    ums      ums   UMS.sh
+	lrwxrwxrwx    ums      ums   UMS.conf -> conf/UMS.conf
+	lrwxrwxrwx    ums      ums   WEB.conf -> conf/WEB.conf
+	drwxr-xr-x    ums      ums   conf
+	
+	~ $ ls -al ./conf/
+	drwxr-xr-x    ums      ums    .
+	drwxr-sr-x    ums      ums    ..
+	-rw-r--r--    ums      ums    UMS.conf
+	-rw-r--r--    ums      ums    WEB.conf
 
 References
 --------------
